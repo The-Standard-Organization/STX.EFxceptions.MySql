@@ -14,6 +14,8 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
             {
                 case 207:
                     throw new InvalidColumnNameException(message);
+                case 208:
+                    throw new InvalidObjectNameException(message);
             }
         }
     }
