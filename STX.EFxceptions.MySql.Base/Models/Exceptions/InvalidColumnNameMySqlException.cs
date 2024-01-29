@@ -6,8 +6,8 @@ using System;
 
 namespace STX.EFxceptions.MySql.Base.Models.Exceptions
 {
-    public class InvalidObjectNameException : Exception
+    public class InvalidColumnNameMySqlException : Exception
     {
-        public InvalidObjectNameException(string message) : base(message) { }
+        public InvalidColumnNameMySqlException(string message) : base(message) { }
     }
 }

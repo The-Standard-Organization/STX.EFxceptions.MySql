@@ -13,9 +13,9 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
             switch (sqlErrorCode)
             {
                 case 207:
-                    throw new InvalidColumnNameException(message);
+                    throw new InvalidColumnNameMySqlException(message);
                 case 208:
-                    throw new InvalidObjectNameException(message);
+                    throw new InvalidObjectNameMySqlException(message);
                 case 547:
                     throw new ForeignKeyConstraintConflictMySqlException(message);
                 case 2601:

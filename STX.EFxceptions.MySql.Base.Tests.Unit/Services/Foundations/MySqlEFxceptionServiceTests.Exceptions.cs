@@ -49,7 +49,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlInvalidColumnNameErrorCode);
 
             // when . then
-            Assert.Throws<InvalidColumnNameException>(() =>
+            Assert.Throws<InvalidColumnNameMySqlException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
 
@@ -70,7 +70,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlInvalidObjectNameErrorCode);
 
             // when . then
-            Assert.Throws<InvalidObjectNameException>(() =>
+            Assert.Throws<InvalidObjectNameMySqlException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
         
