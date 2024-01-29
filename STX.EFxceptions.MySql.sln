@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.Identity.My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.MySql.Infrastructure.Build", "STX.EFxceptions.MySql.Infrastructure.Build\STX.EFxceptions.MySql.Infrastructure.Build.csproj", "{59E60FA4-AA69-42B0-90E2-E94C0734735A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.MySql.Base.Tests.Unit", "STX.EFxceptions.MySql.Base.Tests.Unit\STX.EFxceptions.MySql.Base.Tests.Unit.csproj", "{20BFC89D-61A4-4B23-AA7E-753E64FE399E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.MySql.Base.Tests.Unit", "STX.EFxceptions.MySql.Base.Tests.Unit\STX.EFxceptions.MySql.Base.Tests.Unit.csproj", "{20BFC89D-61A4-4B23-AA7E-753E64FE399E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.MySql.Tests.Unit", "STX.EFxceptions.MySql.Tests.Unit\STX.EFxceptions.MySql.Tests.Unit.csproj", "{87988594-E3D5-4825-8D58-A221C4059735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.MySql.Tests.Acceptance", "STX.EFxceptions.MySql.Tests.Unit\STX.EFxceptions.MySql.Tests.Acceptance.csproj", "{87988594-E3D5-4825-8D58-A221C4059735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.Identity.MySql.Tests.Unit", "STX.EFxceptions.Identity.MySql.Tests.Unit\STX.EFxceptions.Identity.MySql.Tests.Unit.csproj", "{B7EF4F6F-D82A-4BE3-8B0B-61A8B95DA946}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.Identity.MySql.Tests.Acceptance", "STX.EFxceptions.Identity.MySql.Tests.Unit\STX.EFxceptions.Identity.MySql.Tests.Acceptance.csproj", "{B7EF4F6F-D82A-4BE3-8B0B-61A8B95DA946}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
