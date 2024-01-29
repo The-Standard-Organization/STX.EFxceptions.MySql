@@ -20,6 +20,8 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
                     throw new ForeignKeyConstraintConflictMySqlException(message);
                 case 2601:
                     throw new DuplicateKeyWithUniqueIndexMySqlException(message);
+                case 2627:
+                    throw new DuplicateKeyMySqlException(message);
             }
         }
     }
