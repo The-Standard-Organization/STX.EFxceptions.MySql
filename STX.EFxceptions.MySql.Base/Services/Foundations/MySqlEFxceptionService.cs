@@ -3,7 +3,6 @@
 // ----------------------------------------------------------------------------------
 
 using System;
-using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker;
@@ -19,6 +18,7 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
 
         public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
         {
+            ValidateInnerException(dbUpdateException);
             MySqlException mySqlException = GetSqlException(dbUpdateException.InnerException);
             int sqlErrorCode = this.mySqlErrorBroker.GetErrorCode(mySqlException);
             ConvertAndThrowMeaningfulException(sqlErrorCode, mySqlException.Message);
