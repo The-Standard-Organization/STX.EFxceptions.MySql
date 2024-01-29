@@ -18,6 +18,8 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
                     throw new InvalidObjectNameException(message);
                 case 547:
                     throw new ForeignKeyConstraintConflictMySqlException(message);
+                case 2601:
+                    throw new DuplicateKeyWithUniqueIndexMySqlException(message);
             }
         }
     }
