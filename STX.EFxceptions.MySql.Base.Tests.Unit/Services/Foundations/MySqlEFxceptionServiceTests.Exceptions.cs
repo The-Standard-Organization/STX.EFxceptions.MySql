@@ -52,5 +52,26 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
             Assert.Throws<InvalidColumnNameException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
+
+        [Fact]
+        public void ShouldThrowInvalidObjectNameException()
+        {
+            // given
+            int sqlInvalidObjectNameErrorCode = 208;
+            string randomErrorMessage = CreateRandomErrorMessage();
+            MySqlException invalidObjectNameException = CreateMySqlException();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomErrorMessage,
+                innerException: invalidObjectNameException);
+
+            this.mySqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(invalidObjectNameException))
+                    .Returns(sqlInvalidObjectNameErrorCode);
+
+            // when . then
+            Assert.Throws<InvalidObjectNameException>(() =>
+                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+        }
     }
 }
