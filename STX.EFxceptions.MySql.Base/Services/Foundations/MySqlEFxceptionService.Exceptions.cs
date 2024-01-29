@@ -16,6 +16,8 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
                     throw new InvalidColumnNameException(message);
                 case 208:
                     throw new InvalidObjectNameException(message);
+                case 547:
+                    throw new ForeignKeyConstraintConflictMySqlException(message);
             }
         }
     }
