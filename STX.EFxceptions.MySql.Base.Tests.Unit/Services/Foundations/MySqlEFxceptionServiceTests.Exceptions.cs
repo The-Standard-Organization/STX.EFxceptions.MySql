@@ -115,5 +115,26 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
             Assert.Throws<DuplicateKeyWithUniqueIndexMySqlException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
+        
+        [Fact]
+        public void ShouldThrowDuplicateKeyMySqlException()
+        {
+            // given
+            int sqlDuplicateKeyErrorCode = 2627;
+            string randomErrorMessage = CreateRandomErrorMessage();
+            MySqlException duplicateKeyMySqlException = CreateMySqlException();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomErrorMessage,
+                innerException: duplicateKeyMySqlException);
+
+            this.mySqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(duplicateKeyMySqlException))
+                    .Returns(sqlDuplicateKeyErrorCode);
+
+            // when . then
+            Assert.Throws<DuplicateKeyMySqlException>(() =>
+                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+        }
     }
 }
