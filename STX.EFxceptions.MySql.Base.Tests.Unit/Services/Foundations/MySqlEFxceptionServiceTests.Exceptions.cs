@@ -73,5 +73,26 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
             Assert.Throws<InvalidObjectNameException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
+        
+        [Fact]
+        public void ShouldThrowForeignKeyConstraintConflictMySqlException()
+        {
+            // given
+            int sqlForeignKeyConstraintConflictErrorCode = 547;
+            string randomErrorMessage = CreateRandomErrorMessage();
+            MySqlException foreignKeyConstraintConflictMySqlException = CreateMySqlException();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomErrorMessage,
+                innerException: foreignKeyConstraintConflictMySqlException);
+
+            this.mySqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(foreignKeyConstraintConflictMySqlException))
+                    .Returns(sqlForeignKeyConstraintConflictErrorCode);
+
+            // when . then
+            Assert.Throws<ForeignKeyConstraintConflictMySqlException>(() =>
+                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+        }
     }
 }
