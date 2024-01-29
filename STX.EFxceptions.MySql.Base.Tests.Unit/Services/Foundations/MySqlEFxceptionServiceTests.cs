@@ -26,7 +26,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
 
         private string CreateRandomErrorMessage() => new MnemonicString().GetValue();
 
-        private MySqlException CreateMySqlException() => FormatterServices
-            .GetUninitializedObject(typeof(MySqlException)) as MySqlException;
+        private MySqlException CreateMySqlException() =>
+            FormatterServices.GetUninitializedObject(typeof(MySqlException)) as MySqlException;
     }
 }
