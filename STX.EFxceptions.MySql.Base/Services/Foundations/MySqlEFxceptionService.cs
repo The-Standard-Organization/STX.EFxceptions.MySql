@@ -5,15 +5,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
-using STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker;
+using STX.EFxceptions.Interfaces.Brokers.DbErrorBroker;
 
 namespace STX.EFxceptions.MySql.Base.Services.Foundations
 {
     public partial class MySqlEFxceptionService : IMySqlEFxceptionService
     {
-        private readonly IMySqlErrorBroker mySqlErrorBroker;
+        private readonly IDbErrorBroker<MySqlException> mySqlErrorBroker;
 
-        public MySqlEFxceptionService(IMySqlErrorBroker mySqlErrorBroker) =>
+        public MySqlEFxceptionService(IDbErrorBroker<MySqlException> mySqlErrorBroker) =>
             this.mySqlErrorBroker = mySqlErrorBroker;
 
         public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
