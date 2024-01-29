@@ -16,7 +16,7 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
 
         public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
         {
-            throw new System.NotImplementedException();
+            throw dbUpdateException;
         }
     }
 }
