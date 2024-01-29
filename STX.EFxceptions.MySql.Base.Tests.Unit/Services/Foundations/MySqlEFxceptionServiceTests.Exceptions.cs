@@ -4,6 +4,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using STX.EFxceptions.MySql.Base.Models.Exceptions;
 using Xunit;
 
 namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
@@ -28,6 +29,27 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
 
             // when . then
             Assert.Throws<DbUpdateException>(() =>
+                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+        }
+
+        [Fact]
+        public void ShouldThrowInvalidColumnNameException()
+        {
+            // given
+            int sqlInvalidColumnNameErrorCode = 207;
+            string randomErrorMessage = CreateRandomErrorMessage();
+            MySqlException invalidColumnNameException = CreateMySqlException();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomErrorMessage,
+                innerException: invalidColumnNameException);
+
+            this.mySqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(invalidColumnNameException))
+                    .Returns(sqlInvalidColumnNameErrorCode);
+
+            // when . then
+            Assert.Throws<InvalidColumnNameException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
     }
