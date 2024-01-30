@@ -50,6 +50,13 @@ namespace STX.EFxceptions.Identity.MySql
         where TRoleClaim : IdentityRoleClaim<TKey>
         where TUserToken : IdentityUserToken<TKey>
     {
+
+        public EFxceptionsIdentityContext(DbContextOptions options) : base(options)
+        { }
+
+        protected EFxceptionsIdentityContext()
+        { }
+        
         protected override IDbErrorBroker<MySqlException> CreateErrorBroker() =>
             new MySqlErrorBroker();
 
