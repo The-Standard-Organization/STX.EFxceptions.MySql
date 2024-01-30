@@ -26,9 +26,6 @@ We believe that these beliefs will help to ensure that our software(s) are safe 
 
 The Standard Community as a promise to you is in upholding these values.
 
-## Current Outlook of the Project
-In the outset of this endeavor we plan to re-write the existing popular library RESTFulSense to enhance and bring current to modern Standard compliancy. 
-
 ## Contact
 
 If you have any suggestions, comments or questions, please feel free to contact me on:
