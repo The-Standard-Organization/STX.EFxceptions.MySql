@@ -21,7 +21,7 @@ namespace STX.EFxceptions.Identity.MySql
         where TRole : IdentityRole<TKey>
         where TKey : IEquatable<TKey>
     {
-        protected EFxceptionsIdentityContext()
+        protected EFxceptionsIdentityContext() : base()
         { }
 
         public EFxceptionsIdentityContext(DbContextOptions options) : base(options)
