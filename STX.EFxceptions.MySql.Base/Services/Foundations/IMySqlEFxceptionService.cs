@@ -7,6 +7,5 @@ using STX.EFxceptions.Interfaces.Services.EFxceptions;
 namespace STX.EFxceptions.MySql.Base.Services.Foundations
 {
     public interface IMySqlEFxceptionService : IEFxceptionService
-    { 
-    }
+    { }
 }
