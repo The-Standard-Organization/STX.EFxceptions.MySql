@@ -4,6 +4,7 @@
 
 using System;
 using STX.EFxceptions.Identity.MySql.Tests.Acceptance.Models.Clients;
+using STX.EFxceptions.MySql.Base.Models.Exceptions;
 using Xunit;
 
 namespace STX.EFxceptions.Identity.MySql.Tests.Acceptance
@@ -26,6 +27,38 @@ namespace STX.EFxceptions.Identity.MySql.Tests.Acceptance
             // then
             context.Clients.Remove(client);
             context.SaveChanges();
+        }
+
+        [Fact]
+        public void ShouldThrowDuplicateKeyExceptionOnSaveChanges()
+        {
+            // givin
+            var client = new Client
+            { 
+                Id = Guid.NewGuid() 
+            };
+
+            // when . then
+            Assert.Throws<DuplicateKeyMySqlException>(() =>
+            {
+                try
+                {
+                    for(int i = 0; i < 2; i++)
+                    {
+                        context.Clients.Add(client);
+                        context.SaveChanges();
+                    }
+                }
+                catch (ArgumentException argumentException)
+                {
+                    throw new DuplicateKeyMySqlException(argumentException.Message);
+                }
+                finally
+                {
+                    context.Clients.Remove(client);
+                    context.SaveChanges();
+                }
+            });
         }
     }
 }
