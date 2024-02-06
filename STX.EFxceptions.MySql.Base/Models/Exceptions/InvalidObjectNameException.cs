@@ -6,8 +6,8 @@ using System;
 
 namespace STX.EFxceptions.MySql.Base.Models.Exceptions
 {
-    public class DuplicateKeyWithUniqueIndexMySqlException : Exception
+    public class InvalidObjectNameException : Exception
     {
-        public DuplicateKeyWithUniqueIndexMySqlException(string message) : base(message) { }
+        public InvalidObjectNameException(string message) : base(message) { }
     }
 }

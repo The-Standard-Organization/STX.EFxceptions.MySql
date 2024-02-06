@@ -6,8 +6,8 @@ using System;
 
 namespace STX.EFxceptions.MySql.Base.Models.Exceptions
 {
-    public class ForeignKeyConstraintConflictMySqlException : Exception
+    public class ForeignKeyConstraintConflictException : Exception
     {
-        public ForeignKeyConstraintConflictMySqlException(string message) : base(message) { }
+        public ForeignKeyConstraintConflictException(string message) : base(message) { }
     }
 }

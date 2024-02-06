@@ -13,15 +13,15 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
             switch (sqlErrorCode)
             {
                 case 207:
-                    throw new InvalidColumnNameMySqlException(message);
+                    throw new InvalidColumnNameException(message);
                 case 208:
-                    throw new InvalidObjectNameMySqlException(message);
+                    throw new InvalidObjectNameException(message);
                 case 547:
-                    throw new ForeignKeyConstraintConflictMySqlException(message);
+                    throw new ForeignKeyConstraintConflictException(message);
                 case 2601:
-                    throw new DuplicateKeyWithUniqueIndexMySqlException(message);
+                    throw new DuplicateKeyWithUniqueIndexException(message);
                 case 2627:
-                    throw new DuplicateKeyMySqlException(message);
+                    throw new DuplicateKeyException(message);
             }
         }
     }
