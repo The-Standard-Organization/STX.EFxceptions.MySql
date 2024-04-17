@@ -12,8 +12,8 @@
 		<Description>A Standardized .NET library that provides core functionality that is used by the MySql implementations of EFxceptions</Description>
 		<Copyright>The Standard Community 2024 (c)</Copyright>
 		<PackageIcon>EFxceptions.png</PackageIcon>
-		<PackageProjectUrl>https://github.com/The-Standard-Organization/STX.EFxceptions</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/The-Standard-Organization/STX.EFxceptions</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/The-Standard-Organization/STX.EFxceptions.MySql</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/The-Standard-Organization/STX.EFxceptions.MySql</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>.NET; EF; Entity Framework; Exceptions; MySql; The Standard</PackageTags>
 		<PackageReleaseNotes>
