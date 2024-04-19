@@ -16,14 +16,15 @@ namespace STX.EFxceptions.MySql.Base.Services.Foundations
         public MySqlEFxceptionService(IDbErrorBroker<MySqlException> mySqlErrorBroker) =>
             this.mySqlErrorBroker = mySqlErrorBroker;
 
-        public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
+        public void ThrowMeaningfulException(DbUpdateException dbUpdateException) =>
+        TryCatch(() =>
         {
             ValidateInnerException(dbUpdateException);
             MySqlException mySqlException = GetSqlException(dbUpdateException.InnerException);
             int sqlErrorCode = this.mySqlErrorBroker.GetErrorCode(mySqlException);
             ConvertAndThrowMeaningfulException(sqlErrorCode, mySqlException.Message);
             throw dbUpdateException;
-        }
+        });
 
         private MySqlException GetSqlException(Exception exception) => (MySqlException)exception;
     }

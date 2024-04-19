@@ -4,7 +4,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
-using STX.EFxceptions.MySql.Base.Models.Exceptions;
+using STX.EFxceptions.Abstractions.Models.Exceptions;
 using Xunit;
 
 namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
@@ -49,7 +49,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlInvalidColumnNameErrorCode);
 
             // when . then
-            Assert.Throws<InvalidColumnNameMySqlException>(() =>
+            Assert.Throws<InvalidColumnNameException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
 
@@ -70,10 +70,10 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlInvalidObjectNameErrorCode);
 
             // when . then
-            Assert.Throws<InvalidObjectNameMySqlException>(() =>
+            Assert.Throws<InvalidObjectNameException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
-        
+
         [Fact]
         public void ShouldThrowForeignKeyConstraintConflictMySqlException()
         {
@@ -91,10 +91,10 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlForeignKeyConstraintConflictErrorCode);
 
             // when . then
-            Assert.Throws<ForeignKeyConstraintConflictMySqlException>(() =>
+            Assert.Throws<ForeignKeyConstraintConflictException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
-        
+
         [Fact]
         public void ShouldThrowDuplicateKeyWithUniqueIndexMySqlException()
         {
@@ -112,10 +112,10 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlDuplicateKeyErrorCode);
 
             // when . then
-            Assert.Throws<DuplicateKeyWithUniqueIndexMySqlException>(() =>
+            Assert.Throws<DuplicateKeyWithUniqueIndexException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
-        
+
         [Fact]
         public void ShouldThrowDuplicateKeyMySqlException()
         {
@@ -133,7 +133,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .Returns(sqlDuplicateKeyErrorCode);
 
             // when . then
-            Assert.Throws<DuplicateKeyMySqlException>(() =>
+            Assert.Throws<DuplicateKeyException>(() =>
                 this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
         }
     }
