@@ -4,9 +4,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
+using STX.EFxceptions.Abstractions.Services.EFxceptions;
 using STX.EFxceptions.Core;
-using STX.EFxceptions.Interfaces.Brokers.DbErrorBroker;
-using STX.EFxceptions.Interfaces.Services.EFxceptions;
 using STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker;
 using STX.EFxceptions.MySql.Base.Services.Foundations;
 

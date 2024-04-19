@@ -46,7 +46,9 @@
 
 	<ItemGroup>
 	  <PackageReference Include="MySql.Data" Version="8.3.0" />
-	  <PackageReference Include="STX.EFxceptions.Interfaces" Version="0.1.1" />
+	  <PackageReference Include="STX.EFxceptions.Abstractions" Version="0.1.6" />
+	  <PackageReference Include="STX.EFxceptions.Core" Version="0.1.6" />
+	  <PackageReference Include="STX.EFxceptions.Identity.Core" Version="0.1.6" />
 	</ItemGroup>
 
 </Project>

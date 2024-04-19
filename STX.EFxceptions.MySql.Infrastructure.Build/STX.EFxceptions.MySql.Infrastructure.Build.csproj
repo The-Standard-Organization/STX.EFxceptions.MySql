@@ -10,6 +10,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="ADotNet" Version="3.0.2" />
+		<PackageReference Include="STX.EFxceptions.Abstractions" Version="0.1.6" />
+		<PackageReference Include="STX.EFxceptions.Core" Version="0.1.6" />
+		<PackageReference Include="STX.EFxceptions.Identity.Core" Version="0.1.6" />
 	</ItemGroup>
 
 </Project>

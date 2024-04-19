@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------------
 
 using MySql.Data.MySqlClient;
-using STX.EFxceptions.Interfaces.Brokers.DbErrorBroker;
+using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
 
 namespace STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker
 {
