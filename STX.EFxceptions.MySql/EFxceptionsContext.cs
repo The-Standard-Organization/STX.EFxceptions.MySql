@@ -12,7 +12,7 @@ using STX.EFxceptions.MySql.Base.Services.Foundations;
 
 namespace STX.EFxceptions.MySql
 {
-    public class EFxceptionsContext : DbContextBase<MySqlException>
+    public abstract class EFxceptionsContext : DbContextBase<MySqlException>
     {
         public EFxceptionsContext(DbContextOptions<EFxceptionsContext> options)
             : base(options)
