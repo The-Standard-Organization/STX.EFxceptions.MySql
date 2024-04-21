@@ -2,15 +2,15 @@
 // Copyright(c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
+using STX.EFxceptions.Abstractions.Services.EFxceptions;
 using STX.EFxceptions.Identity.Core;
-using STX.EFxceptions.Interfaces.Brokers.DbErrorBroker;
-using STX.EFxceptions.Interfaces.Services.EFxceptions;
 using STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker;
 using STX.EFxceptions.MySql.Base.Services.Foundations;
+using System;
 
 namespace STX.EFxceptions.Identity.MySql
 {
@@ -55,7 +55,7 @@ namespace STX.EFxceptions.Identity.MySql
 
         protected EFxceptionsIdentityContext() : base()
         { }
-        
+
         protected override IDbErrorBroker<MySqlException> CreateErrorBroker() =>
             new MySqlErrorBroker();
 
