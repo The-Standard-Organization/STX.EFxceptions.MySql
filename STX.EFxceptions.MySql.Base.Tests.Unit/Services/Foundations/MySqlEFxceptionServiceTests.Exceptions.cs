@@ -2,9 +2,12 @@
 // Copyright(c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using MySql.Data.MySqlClient;
 using STX.EFxceptions.Abstractions.Models.Exceptions;
+using STX.EFxceptions.MySql.Base.Models.Exceptions;
 using Xunit;
 
 namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
@@ -19,7 +22,7 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
             string randomErrorMessage = CreateRandomErrorMessage();
             MySqlException foreignKeyConstraintConflictException = CreateMySqlException();
 
-            var dbUpdateException = new DbUpdateException(
+            var expectedDbUpdateException = new DbUpdateException(
                 message: randomErrorMessage,
                 innerException: foreignKeyConstraintConflictException);
 
@@ -27,9 +30,15 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                 broker.GetErrorCode(foreignKeyConstraintConflictException))
                     .Returns(sqlForeignKeyConstraintConflictErrorCode);
 
-            // when . then
-            Assert.Throws<DbUpdateException>(() =>
-                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+            // when
+            var actualDbUpdateException = Assert.Throws<DbUpdateException>(() =>
+                this.mySqlEFxceptionService.ThrowMeaningfulException(expectedDbUpdateException));
+
+            // then
+            actualDbUpdateException.Should().BeEquivalentTo(expectedDbUpdateException);
+
+            this.mySqlErrorBrokerMock.Verify(broker => broker
+                .GetErrorCode(foreignKeyConstraintConflictException), Times.Once());
         }
 
         [Fact]
@@ -38,6 +47,13 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
             // given
             int sqlInvalidColumnNameErrorCode = 207;
             string randomErrorMessage = CreateRandomErrorMessage();
+
+            var invalidColumnNameMySqlException =
+                new InvalidColumnNameMySqlException(randomErrorMessage);
+
+            var expectedInvalidColumnNameException = new InvalidColumnNameException(
+                randomErrorMessage, invalidColumnNameMySqlException);
+
             MySqlException invalidColumnNameException = CreateMySqlException();
 
             var dbUpdateException = new DbUpdateException(
@@ -48,9 +64,17 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                 broker.GetErrorCode(invalidColumnNameException))
                     .Returns(sqlInvalidColumnNameErrorCode);
 
-            // when . then
-            Assert.Throws<InvalidColumnNameException>(() =>
-                this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+            // when
+            InvalidColumnNameException actualInvalidColumnNameException = 
+                Assert.Throws<InvalidColumnNameException>(() => 
+                    this.mySqlEFxceptionService.ThrowMeaningfulException(dbUpdateException));
+
+            // then
+            actualInvalidColumnNameException.Should()
+                .BeEquivalentTo(expectedInvalidColumnNameException);
+
+            this.mySqlErrorBrokerMock.Verify(broker => broker
+                .GetErrorCode(invalidColumnNameException), Times.Once());
         }
 
         [Fact]
