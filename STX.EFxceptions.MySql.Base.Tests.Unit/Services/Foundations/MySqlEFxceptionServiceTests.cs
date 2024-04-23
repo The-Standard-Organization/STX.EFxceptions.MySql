@@ -2,11 +2,11 @@
 // Copyright(c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System.Runtime.Serialization;
 using Moq;
 using MySql.Data.MySqlClient;
 using STX.EFxceptions.MySql.Base.Brokers.DbErrorBroker;
 using STX.EFxceptions.MySql.Base.Services.Foundations;
+using System.Reflection;
 using Tynamix.ObjectFiller;
 
 namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
@@ -26,7 +26,15 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
 
         private string CreateRandomErrorMessage() => new MnemonicString().GetValue();
 
-        private MySqlException CreateMySqlException() =>
-            FormatterServices.GetUninitializedObject(typeof(MySqlException)) as MySqlException;
+        private MySqlException CreateMySqlException(string message, int errorCode)
+        {
+            ConstructorInfo ctor = typeof(MySqlException)
+                .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null,
+                    new[] { typeof(string), typeof(int) }, null);
+
+            var exception = (MySqlException)ctor.Invoke(new object[] { message, errorCode });
+
+            return exception;
+        }
     }
 }
