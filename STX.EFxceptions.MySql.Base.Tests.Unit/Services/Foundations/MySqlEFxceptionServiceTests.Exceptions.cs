@@ -42,7 +42,16 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                     .ThrowMeaningfulException(dbUpdateException));
 
             // then
-            actualDbUpdateException.Should().BeEquivalentTo(expectedDbUpdateException);
+            actualDbUpdateException.Should()
+                .BeEquivalentTo(
+                expectation: expectedDbUpdateException,
+                config: options => options
+                    .Excluding(ex => ex.TargetSite)
+                    .Excluding(ex => ex.StackTrace)
+                    .Excluding(ex => ex.Source)
+                    .Excluding(ex => ex.InnerException.TargetSite)
+                    .Excluding(ex => ex.InnerException.StackTrace)
+                    .Excluding(ex => ex.InnerException.Source));
 
             this.mySqlErrorBrokerMock.Verify(broker => broker
                 .GetErrorCode(foreignKeyConstraintConflictExceptionThrown), Times.Once());
@@ -282,11 +291,11 @@ namespace STX.EFxceptions.MySql.Base.Tests.Unit.Services.Foundations
                 message: randomDbUpdateExceptionMessage,
                 innerException: duplicateKeyMySqlExceptionThrown);
 
-            DuplicateKeyMySqlException duplicateKeyMySqlException =
+            var duplicateKeyMySqlException =
                 new DuplicateKeyMySqlException(
                     message: duplicateKeyMySqlExceptionThrown.Message);
 
-            DuplicateKeyException expectedDuplicateKeyException =
+            var expectedDuplicateKeyException =
                 new DuplicateKeyException(
                     message: duplicateKeyMySqlException.Message,
                     innerException: duplicateKeyMySqlException);
